@@ -36,7 +36,10 @@
     "*.html": [
       "prettier --write"
     ],
-    ".scss": [
+    "*.scss": [
+      "prettier --write"
+    ],
+    "*.json": [
       "prettier --write"
     ]
   }
