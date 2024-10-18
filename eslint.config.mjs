@@ -1,6 +1,6 @@
-import globals from 'globals';
-import pluginJs from '@eslint/js';
-import pluginJest from 'eslint-plugin-jest';
+import globals from "globals";
+import pluginJs from "@eslint/js";
+import pluginJest from "eslint-plugin-jest";
 
 export default [
   {
@@ -10,8 +10,8 @@ export default [
         ...globals.jest,
         ...globals.node,
       },
-      ecmaVersion: 'latest',
-      sourceType: 'module',
+      ecmaVersion: "latest",
+      sourceType: "module",
     },
     rules: {},
   },
@@ -19,7 +19,7 @@ export default [
   pluginJs.configs.recommended,
 
   {
-    files: ['**/*.test.js'],
+    files: ["**/*.test.js"],
     plugins: {
       jest: pluginJest,
     },
@@ -27,7 +27,7 @@ export default [
       globals: globals.jest,
     },
     rules: {
-      'jest/prefer-expect-assertions': 'off',
+      "jest/prefer-expect-assertions": "off",
     },
     settings: {
       jest: {
