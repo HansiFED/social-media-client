@@ -5,7 +5,11 @@ import pluginJest from 'eslint-plugin-jest';
 export default [
   {
     languageOptions: {
-      globals: globals.browser,
+      globals: {
+        ...globals.browser,
+        ...globals.jest,
+        ...globals.node,
+      },
       ecmaVersion: 'latest',
       sourceType: 'module',
     },
