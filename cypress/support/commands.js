@@ -77,11 +77,3 @@ Cypress.Commands.add("browserAlert", () => {
     );
   });
 });
-
-Cypress.Commands.add("viewFeed", () => {
-  cy.visitHome();
-  cy.showLoginForm();
-  cy.loginWithTestUser();
-  cy.visitHome();
-  cy.wait(500);
-});
