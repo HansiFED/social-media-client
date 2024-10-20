@@ -1,53 +1,53 @@
 import globals from "globals";
 import pluginJs from "@eslint/js";
-import pluginJest from "eslint-plugin-jest";
-import pluginCypress from "eslint-plugin-cypress";
+import jestPlugin from "eslint-plugin-jest";
+import cypressPlugin from "eslint-plugin-cypress";
 
 export default [
   {
     languageOptions: {
       globals: {
         ...globals.browser,
-        ...globals.jest,
         ...globals.node,
+        ...globals.jest,
+        cy: "readonly",
+        Cypress: "readonly",
       },
       ecmaVersion: "latest",
       sourceType: "module",
     },
-    rules: {},
   },
 
   pluginJs.configs.recommended,
 
   {
     files: ["**/*.test.js"],
-    plugins: {
-      jest: pluginJest,
-    },
-    languageOptions: {
-      globals: globals.jest,
-    },
-    rules: {
-      "jest/prefer-expect-assertions": "off",
-    },
-    settings: {
-      jest: {
-        version: 27,
-      },
-    },
-  },
-  {
-    files: ["**/*.cy.js"],
-    plugins: {
-      cypress: pluginCypress,
-    },
     languageOptions: {
       globals: {
         ...globals.jest,
-        "cypress/globals": true,
       },
     },
+    plugins: {
+      jest: jestPlugin,
+    },
     rules: {
+      ...jestPlugin.configs.recommended.rules,
+      "jest/prefer-expect-assertions": "off",
+    },
+  },
+
+  {
+    files: ["**/*.cy.js", "cypress.config.js"],
+    languageOptions: {
+      globals: {
+        ...globals.cypress,
+      },
+    },
+    plugins: {
+      cypress: cypressPlugin,
+    },
+    rules: {
+      ...cypressPlugin.configs.recommended.rules,
       "cypress/no-unnecessary-waiting": "off",
       "no-unused-vars": "off",
     },
